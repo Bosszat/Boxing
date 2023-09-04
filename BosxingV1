@@ -9,8 +9,6 @@ local code = {"170k", "150k", "kimura", "ghost", "bruh", "violence", "100k", "ra
 local fireclick = function(button)
     firesignal(button.MouseButton1Down)
     firesignal(button.MouseButton1Up)
-    firesignal(button.MouseButton1Down)
-    firesignal(button.MouseButton1Up)
 end
 
 function redeem(code)
