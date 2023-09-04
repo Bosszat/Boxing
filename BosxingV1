@@ -36,12 +36,13 @@ coroutine.wrap(function()
         task.wait(3)
     end
 
-  --  while task.wait(0) do
+ while task.wait(0) do
         if not table.find(lock, style.Text) then
             if not b.Visible then
                 fireclick(a)
                 print("random")
-                task.wait(12) 
+ task.wait(12)
+ 
              
                
             else
@@ -60,5 +61,5 @@ coroutine.wrap(function()
 
             game:shutdown()
         end
-    --end
+   end
 end)()
