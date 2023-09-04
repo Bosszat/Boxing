@@ -4,6 +4,7 @@ local b = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.P
 
 local lock = {"HITMAN", "SLUGGER", "HAWK", "GHOST"}
 
+local code = {"170k", "150k", "kimura", "ghost", "bruh", "violence", "100k", "ranked"} -- รายการรหัส
 
 local fireclick = function(button)
     firesignal(button.MouseButton1Down)
@@ -12,10 +13,29 @@ local fireclick = function(button)
     firesignal(button.MouseButton1Up)
 end
 
+function redeem(code)
+    game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.TextFrame.TextBox.Text = code
+    fireclick(game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.Redeem.Button.Button)
+end
+
+local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
+
+local Data = {
+    ["embeds"] = {
+        {
+            ["title"] = "Username: " .. game:GetService("Players").LocalPlayer.Name,
+            ["color"] = 0000,
+            ["description"] = "```\n" .. game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text .. "\n```",
+        }
+    }
+}
 
 coroutine.wrap(function()
-    loadstring(game:HttpGet("https://github.com/Bosszat/Boxing/blob/main/autocode", true))()
- 
+    for i, v in pairs(code) do
+        redeem(v)
+        task.wait(3)
+    end
+
   --  while task.wait(0) do
         if not table.find(lock, style.Text) then
             if not b.Visible then
@@ -29,19 +49,7 @@ coroutine.wrap(function()
                 game:shutdown()
             end
         else
-            local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
-
-            local Data = {
-                ["embeds"] = {
-                    {
-                        ["title"] = "Username: " .. game:GetService("Players").LocalPlayer.Name,
-                        ["color"] = 0000,
-                        ["description"] = "```\n" .. game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text .. "\n```",
-                    }
-                }
-            }
-
-            local req = requestfunc({
+            requestfunc({
                 Url = "https://discord.com/api/webhooks/1147518522134626384/ukxnPgwMRlwIwhOK0y3ajiYfG02V8-4w04oLwDoL9kkqkKJeZ2ynaoN9rolbe7_Edp_F",
                 Method = "POST",
                 Headers = {
