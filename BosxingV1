@@ -23,8 +23,9 @@ coroutine.wrap(function()
       task.wait(3)
       end
    end
-   if _G.spin then
+  
    while task.wait(5) do
+ if _G.spin then
         if not table.find(lock, style.Text) then
             if not b.Visible then
                 fireclick(a)
