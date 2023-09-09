@@ -1300,7 +1300,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 		function ContainerContent:Dropdown(text,list,callback)
 			local DropFunc = {}
 			local Selected = text
-			local FrameSize = 43
+			local FrameSize = 60
 			local ItemCount = 0
 			local DropToggled = false
 			local Dropdown = Instance.new("TextButton")
