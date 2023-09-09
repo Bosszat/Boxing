@@ -3,6 +3,8 @@ _G["Spin"] = { Allcode =  {"170k","150k","kimura","ghost","bruh","violence","100
 Getcodeauto = true , --auto getcode
 SpinAuto = true, --auto spin
 }
+
+
 _G["Automessage"] = {
     URL = "LinkWebhook", --webhook Discord
     Sendwebhook = true,
