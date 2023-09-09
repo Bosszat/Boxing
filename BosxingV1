@@ -1,54 +1,85 @@
-local a = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.SpinButton.Button
+_G.autoSpin = false  _G.autoredeem = false _G.Des = false
+local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()
+local win = Flux:Window("PREVIEW", "Baseplate", Color3.fromRGB(255, 110, 48), Enum.KeyCode.LeftControl)
+local tab = win:Tab("Tab 1", "http://www.roblox.com/asset/?id=6023426915")
+local SpinButton = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.SpinButton.Button
 local style = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName
 local b = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.Price
-local lock = {"HITMAN", "SLUGGER", "HAWK", "GHOST",}
-local code = _G["Spin"]["Allcode"]
+local lock = {"HITMAN", "SLUGGER", "HAWK", "GHOST"}
+local code = {"170k","150k","kimura","ghost","bruh","violence","100k","ranked"}
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RAMAccount = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ben10u/Roblox-Account-Manager/main/RAMAccount.lua"))()
 local Account = RAMAccount.new(LocalPlayer.Name)
-local fireclick = function(button)
-    firesignal(button.MouseButton1Down)wait(0.2)
-    firesignal(button.MouseButton1Up) wait(0.2)
+local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
+
+local fireclick = function(button) ---กดปุ่ม
+    firesignal(button.MouseButton1Down)
+    wait(0.2)
+    firesignal(button.MouseButton1Up)
+    wait(0.2)
 end
 function redeem(code)
     game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.TextFrame.TextBox.Text = code
     fireclick(game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.Redeem.Button.Button)
 end
-coroutine.wrap(function()
-   if _G["Spin"]["Getcodeauto"] then
-   for i,v in pairs(code) do
-       redeem(v) wait(3)
-      end
+tab:Toggle("Auto-Spin ", "Auto spin for you!", _G.auto,function(value) 
+    _G.auto = value
+end)
+tab:Toggle("Redeem-Code ", "Auto Redeem Code for you!", _G.autoredeem,function(redeem) 
+    _G.autoredeem = redeem
+end)
+tab:Toggle("SetDesciption ", "Auto Setdescription for you!", _G.Des,function(Des) 
+    _G.Des = Des
+end)
+spawn(function()
+ while wait(1) do
+ if _G.autoredeem then
+    for i,v in pairs(code) do
+       if _G.autoredeem then
+        redeem(v)
+        task.wait(3.5)
+       end
    end
-   if _G["Spin"]["SpinAuto"] then
-   while task.wait(5) do
-        if not table.find(lock, style.Text) then
-            if not b.Visible then
-                fireclick(a)
-           else
-              Account:SetDescription(style.Text)    game:shutdown()
+  end
+      if _G.autoSpin then
+            if not table.find(lock, style.Text) then
+                if not b.Visible then
+                    fireclick(SpinButton)
+                    print("random")
+                    wait(12)
+                else
+                    if _G.Des then
+                    local Data = {
+                        ["embeds"] = {
+                            {
+                                ["title"] = "Username: "..game:GetService("Players").LocalPlayer.Name,
+                                ["color"] = 0000,
+                                ["description"] = "```\n"..game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text.."\n```",
+                                
+                             }
+                        }
+                    }
+                    Account:SetAlias("NOT Legendary") 
+                 end
+                    game:shutdown()
+                end
+            else 
+                if _G.Des then
+                local Data = {
+                    ["embeds"] = {
+                        {
+                            ["title"] = "Username: "..game:GetService("Players").LocalPlayer.Name,
+                            ["color"] = 0000,
+                            ["description"] = "```\n"..game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text.."\n```",
+                            
+                         }
+                    }
+                }
+                Account:SetAlias(style.Text) -- Legendary
             end
-        else 
-            if _G["Automessage"]["SendWebhook"] then
-       local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
-       local Data = {
-    ["embeds"] = {
-        {
-            ["title"] = "Username: "..game:GetService("Players").LocalPlayer.Name,
-            ["color"] = 0000,
-            ["description"] = "```\n"..game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text.."\n```",    
-         }
-    }
-}
-local req = requestfunc({
-	Url = _G["Automessage"]["URL"] ,
-	Method = "POST",
-                Headers = {   ["content-type"] = "application/json"  },  Body = game:GetService("HttpService"):JSONEncode(Data)
-})
-     end
-           if _G["Automessage"]["SetDescription"] then  Account:SetDescription(style.Text)   end      game:shutdown()
-      end
+                game:shutdown()
+            end
+        end
     end
- end
-end)()
+end)
