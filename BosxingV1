@@ -1,7 +1,7 @@
 local a = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.SpinButton.Button
 local style = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName
 local b = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.Price
-local lock = {"IPPO", "WOLF", "HANDS LOW",}
+local lock = {"HITMAN", "SLUGGER", "HAWK", "GHOST"}
 local code = _G["Code"]["Allcode"]
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
