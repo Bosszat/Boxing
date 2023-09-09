@@ -1,8 +1,8 @@
 local a = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.SpinButton.Button
 local style = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName
 local b = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.Price
-local lock = {"HITMAN", "SLUGGER", "HAWK", "GHOST"}
-local code = _G["Code"]["Allcode"]
+local lock = {"HITMAN", "SLUGGER", "HAWK", "GHOST",}
+local code = _G["Spin"]["Allcode"]
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RAMAccount = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ben10u/Roblox-Account-Manager/main/RAMAccount.lua"))()
@@ -13,56 +13,42 @@ local fireclick = function(button)
 end
 function redeem(code)
     game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.TextFrame.TextBox.Text = code
-    
     fireclick(game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.Redeem.Button.Button)
 end
 coroutine.wrap(function()
-   if _G["Code"]["Getcodeauto"] then
+   if _G["Spin"]["Getcodeauto"] then
    for i,v in pairs(code) do
-       redeem(v)
-      task.wait(3)
+       redeem(v) wait(3)
       end
    end
-  
+   if _G["Spin"]["SpinAuto"] then
    while task.wait(5) do
- if _G.spin then
         if not table.find(lock, style.Text) then
             if not b.Visible then
                 fireclick(a)
-                print("random")
-        else
-              print("Not Spin")
-               Account:SetDescription(style.Text)
-              game:shutdown()
+           else
+              Account:SetDescription(style.Text)    game:shutdown()
             end
         else 
             if _G["Automessage"]["SendWebhook"] then
-      local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
-
+       local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
        local Data = {
     ["embeds"] = {
         {
             ["title"] = "Username: "..game:GetService("Players").LocalPlayer.Name,
             ["color"] = 0000,
-            ["description"] = "```\n"..game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text.."\n```",
-            
+            ["description"] = "```\n"..game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName.Text.."\n```",    
          }
     }
 }
 local req = requestfunc({
 	Url = _G["Automessage"]["URL"] ,
 	Method = "POST",
-                Headers = {
-                    ["content-type"] = "application/json"
-                },
-                Body = game:GetService("HttpService"):JSONEncode(Data)
+                Headers = {   ["content-type"] = "application/json"  },  Body = game:GetService("HttpService"):JSONEncode(Data)
 })
-end
-           if _G["Automessage"]["SetDescription"] then
-              Account:SetDescription(style.Text)
-           end        
-           game:shutdown()   
-        end
+     end
+           if _G["Automessage"]["SetDescription"] then  Account:SetDescription(style.Text)   end      game:shutdown()
+      end
     end
  end
 end)()
