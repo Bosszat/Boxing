@@ -1,33 +1,29 @@
-
 local a = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.SpinButton.Button
 local style = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Slots.Slot1.Main.StyleName
 local b = game:GetService("Players").LocalPlayer.PlayerGui.Main.StyleShop.Spin.Price
 local lock = {"IPPO", "WOLF", "HANDS LOW",}
-local code = _G["code"]["allcode"]
+local code = _G["Code"]["Allcode"]
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RAMAccount = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ben10u/Roblox-Account-Manager/main/RAMAccount.lua"))()
 local Account = RAMAccount.new(LocalPlayer.Name)
-
 local fireclick = function(button)
-    firesignal(button.MouseButton1Down)
-    wait(0.2)
-    firesignal(button.MouseButton1Up)
-    wait(0.2)
+    firesignal(button.MouseButton1Down)wait(0.2)
+    firesignal(button.MouseButton1Up) wait(0.2)
 end
-
 function redeem(code)
     game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.TextFrame.TextBox.Text = code
     
     fireclick(game:GetService("Players").LocalPlayer.PlayerGui.Main.Codes.Main.Redeem.Button.Button)
 end
 coroutine.wrap(function()
-   if _G.code then
+   if _G["Code"]["Getcodeauto"] then
    for i,v in pairs(code) do
        redeem(v)
       task.wait(3)
       end
    end
+   if _G.spin then
    while task.wait(5) do
         if not table.find(lock, style.Text) then
             if not b.Visible then
@@ -39,7 +35,7 @@ coroutine.wrap(function()
               game:shutdown()
             end
         else 
-            if webhook then
+            if _G["Automessage"]["SendWebhook"] then
       local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
 
        local Data = {
@@ -53,7 +49,7 @@ coroutine.wrap(function()
     }
 }
 local req = requestfunc({
-	Url = "https://discord.com/api/webhooks/1147518522134626384/ukxnPgwMRlwIwhOK0y3ajiYfG02V8-4w04oLwDoL9kkqkKJeZ2ynaoN9rolbe7_Edp_F",
+	Url = _G["Automessage"]["URL"] ,
 	Method = "POST",
                 Headers = {
                     ["content-type"] = "application/json"
@@ -61,8 +57,11 @@ local req = requestfunc({
                 Body = game:GetService("HttpService"):JSONEncode(Data)
 })
 end
-            Account:SetDescription(style.Text)
-             game:shutdown()           
+           if _G["Automessage"]["SetDescription"] then
+              Account:SetDescription(style.Text)
+           end        
+           game:shutdown()   
         end
     end
+ end
 end)()
