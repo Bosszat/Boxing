@@ -23,15 +23,16 @@ task.spawn(function()
 	while task.wait(0.1) do
 		if autoCollect then
 			for _, pet in ipairs(Workspace.Pets:GetChildren()) do
-	if pet:GetAttribute(“UserId”) == LocalPlayer.UserId then
-		if pet.TrgIdle then
-			firetouchinterest(HumanoidRootPart, pet.TrgIdle, 1)
-			task.wait(0.1)
-			firetouchinterest(HumanoidRootPart, pet.TrgIdle, 0)
-		end
-	end
-end
-	end
+            	if pet:GetAttribute(“UserId”) == LocalPlayer.UserId then
+            		if pet.TrgIdle then
+            			firetouchinterest(HumanoidRootPart, pet.TrgIdle, 1)
+            			task.wait(0.1)
+                        firetouchinterest(HumanoidRootPart, pet.TrgIdle, 0)
+            		end
+            	end
+            end
+    	end
+    end
 end)
 
 --  UI 
